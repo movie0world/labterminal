@@ -4,7 +4,7 @@ const app = express()
 const path =require('path')
 const bodyParser=require("body-parser")
 const {Product}=require("./Model/Product")
-const port = 8000
+const port = process.env.PORT || 8000
 
 
 
