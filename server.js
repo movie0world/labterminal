@@ -4,6 +4,7 @@ const app = express()
 const path =require('path')
 const bodyParser=require("body-parser")
 const {Product}=require("./Model/Product")
+const cors =require("cors")
 const port = process.env.PORT || 8000
 
 
@@ -16,6 +17,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cors({origin:"*"}));
 app.use(express.static(path.join(__dirname, "public")));
 
 
