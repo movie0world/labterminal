@@ -99,7 +99,7 @@
           data.append("prPrice",prPrice)
           data.append("prImage",idata)
         
-         fetch('http://localhost:8000/product', {
+         fetch('https://backterminal.herokuapp.com/product', {
       method: 'POST',
       body: data
     }).then(response=>response.json()).then(response=>{console.log("valu",response);document.getElementById("myForm").reset();})
