@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+   
+  </head>
+  <body>
+   
+    <div class="row mt-3">
+      <div class="col-4 mx-3">
+        <form
+    id="myForm"
+        >
+         
+          <div class="form-group">
+            <label for="inputEmail4">Product Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="prName"
+              id="prName"
+              placeholder="Enter your product name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="inputAddress">Product Price</label>
+            <input
+              type="Number"
+              class="form-control"
+              name="prPrice"
+              id="prPrice"
+              
+              placeholder="Enter your Product Price"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Product Detail</label>
+            <input
+              type="text"
+              class="form-control"
+              name="prDetails"
+              id="prDetails"
+              
+              placeholder="Enter your Product Detail"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Product Catagory</label>
+            <input
+              type="text"
+              class="form-control"
+              name="prCategory"
+              id="prCategory"
+              placeholder="Enter your Product Catagory"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Select your file</label>
+            <input type="file" name="prImage" class="form-control-file" id="prImage">
+          </div>
+          <img src="..." alt="..." class="img-thumbnail showimage">
+        
+
+          <button type="submit" id="add" class="btn btn-primary btn-block
+          ">add</button>
+
+       
+
+        </form>
+      </div>
+    
+    <script>
+      const btn=document.querySelector('#add');
+      const showimage= document.querySelector('.showimage')
+      btn.addEventListener('click',(e)=>{
+          e.preventDefault()
+     const prName=  document.querySelector('#prName').value;
+     const prDetails=  document.querySelector('#prDetails').value;
+     const prCategory=  document.querySelector('#prCategory').value;
+     const prPrice= document.querySelector('#prPrice').value;
+   
+     var input = document.querySelector('input[type=file]'),
+    idata = input.files[0];
+     console.log("form",prPrice)
+     const prImage= document.querySelector('#prImage').scr;
+          const data= new FormData()
+          data.append("prName",prName)
+          data.append("prDetails",prDetails)
+          data.append("prCategory",prCategory)
+          data.append("prPrice",prPrice)
+          data.append("prImage",idata)
+        
+         fetch('http://localhost:8000/product', {
+      method: 'POST',
+      body: data
+    }).then(response=>response.json()).then(response=>{console.log("valu",response);document.getElementById("myForm").reset();})
+         
+    //    new FormData(btn)
+         
+
+      })
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
